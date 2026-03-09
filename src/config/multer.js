@@ -6,9 +6,19 @@ const storage = multer.diskStorage({
 
   destination: (req, file, cb) => {
 
-    const today = new Date().toISOString().split('T')[0]
+    const { category, period, lote } = req.body
 
-    const dir = path.join(__dirname, '../../uploads/raw', today)
+    // const today = new Date().toISOString().split('T')[0]
+    // const dir = path.join(__dirname, '../../uploads/raw', today)
+
+    const dir = path.join(
+      __dirname,
+      '../../uploads',
+      category,
+      period,
+      lote
+    )
+
 
     fs.mkdirSync(dir, { recursive: true })
 
